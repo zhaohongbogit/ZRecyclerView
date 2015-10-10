@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="basic_white">#CCCCCC</color>
+    <color name="swife_color1">#000000</color>
+    <color name="swife_color2">#FEE3FE</color>
+    <color name="swife_color3">#CDFECE</color>
+    <color name="swife_color4">#FFCC33</color>
+    <color name="swife_color5">#FF23DE</color>
+</resources>
