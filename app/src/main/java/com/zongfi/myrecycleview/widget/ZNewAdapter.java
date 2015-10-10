@@ -13,6 +13,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.zongfi.myrecycleview.R;
 import com.zongfi.myrecycleview.pojo.News;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class ZNewAdapter extends RecyclerView.Adapter<ZNewAdapter.ZViewHolder>{
 
     Context context;
     OnItemClickListener onItemClickListener;
-    List<News> datas;
+    List<News> datas = new ArrayList<News>();
 
     public ZNewAdapter(Context context){
         this.context = context;
@@ -38,8 +39,8 @@ public class ZNewAdapter extends RecyclerView.Adapter<ZNewAdapter.ZViewHolder>{
         return datas;
     }
 
-    public void setDatas(List<News> datas) {
-        this.datas = datas;
+    public void addDatas(List<News> news){
+        datas.addAll(news);
     }
 
     @Override

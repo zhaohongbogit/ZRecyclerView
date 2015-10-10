@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class ParseNews implements BaseParser{
 
-    private List data;
+    public Boolean isRunning = false;
+
     private static ParseNews parseNews;
 
     private ParseNews(){};
@@ -31,17 +32,16 @@ public class ParseNews implements BaseParser{
 
     @Override
     public List<News> parse(Integer page) {
+        isRunning = true;
         if(page==null){
             page = 1;
         }
+        List data = new ArrayList();
         String url = "http://ent.ifeng.com/listpage/3/"+page+"/list.shtml";
         try {
             Document doc = Jsoup.connect(url).get();
             Elements units = doc.getElementsByClass("box_list");
             Iterator<Element> items = units.iterator();
-            if(page==1 || data==null){
-                data = new ArrayList<String>();
-            }
             while (items.hasNext()){
                 News news = new News();
                 Element ele = items.next();
@@ -55,10 +55,8 @@ public class ParseNews implements BaseParser{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        isRunning = false;
         return data;
     }
 
-    public List getData() {
-        return data;
-    }
 }

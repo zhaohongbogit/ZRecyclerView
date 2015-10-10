@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
             @Override
             public void onRefresh() {
                 page = 1;
+                adapter = null;
                 new InitDataLoad().execute();
             }
         });
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
     @Override
     public void onItemClick(View view, int position) {
 //        Toast.makeText(this, data.get(position), Toast.LENGTH_SHORT).show();
-        News news = (News) ParseNews.getInstance().getData().get(position);
+        News news = (News) adapter.getDatas().get(position);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getSourceUrl()));
         startActivity(intent);
     }
@@ -142,22 +143,32 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
     class InitDataLoad extends AsyncTask {
 
         @Override
+        protected void onPreExecute() {
+            if(ParseNews.getInstance().isRunning){
+                cancel(true);
+            }
+            super.onPreExecute();
+        }
+
+        @Override
         protected Object doInBackground(Object[] params) {
 //            data = ParseBox.getInstance().parse(page);
-            ParseNews.getInstance().parse(page);
-            return null;
+            return ParseNews.getInstance().parse(page);
         }
 
         @Override
         protected void onPostExecute(Object o) {
-            if(adapter==null || page==1){
+            ArrayList<News> data = (ArrayList<News>) o;
+            if(adapter==null){
                 adapter = new ZNewAdapter(MainActivity.this);
-                adapter.setDatas(ParseNews.getInstance().getData());
                 adapter.setOnItemClickListener(MainActivity.this);
                 myAdapter = new SlideInBottomAnimationAdapter(adapter);
                 recyclerView.setAdapter(myAdapter);
             }
-            myAdapter.notifyDataSetChanged();
+            if(data!=null && data.size()>0){
+                adapter.addDatas(data);
+                myAdapter.notifyDataSetChanged();
+            }
             swipeRefreshLayout.setRefreshing(false);
             super.onPostExecute(o);
         }
