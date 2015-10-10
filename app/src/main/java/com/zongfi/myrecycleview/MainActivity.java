@@ -1,5 +1,7 @@
 package com.zongfi.myrecycleview;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +20,12 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.zongfi.myrecycleview.network.ZHttpUtils;
+import com.zongfi.myrecycleview.parse.ParseBox;
+import com.zongfi.myrecycleview.parse.ParseNews;
+import com.zongfi.myrecycleview.pojo.News;
 import com.zongfi.myrecycleview.widget.Divider;
 import com.zongfi.myrecycleview.widget.ZAdapter;
+import com.zongfi.myrecycleview.widget.ZNewAdapter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,7 +39,7 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
 
-public class MainActivity extends AppCompatActivity implements ZAdapter.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnItemClickListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -42,11 +48,10 @@ public class MainActivity extends AppCompatActivity implements ZAdapter.OnItemCl
     @ViewInject(R.id.listView)
     RecyclerView recyclerView;
 
-    List<String> data;
     SlideInBottomAnimationAdapter myAdapter;
     LinearLayoutManager layoutManager;
 
-    ZAdapter adapter;
+    ZNewAdapter adapter;
     Integer page = 1;
 
     @Override
@@ -89,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements ZAdapter.OnItemCl
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(page>2){
-                    return;
-                }
+//                if(page>2){
+//                    return;
+//                }
                 int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                 int totalItemCount = layoutManager.getItemCount();
                 //lastVisibleItem >= totalItemCount - 4 表示剩下4个item自动加载，各位自由选择
@@ -106,7 +111,10 @@ public class MainActivity extends AppCompatActivity implements ZAdapter.OnItemCl
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, data.get(position), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, data.get(position), Toast.LENGTH_SHORT).show();
+        News news = (News) ParseNews.getInstance().getData().get(position);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getSourceUrl()));
+        startActivity(intent);
     }
 
     @Override
@@ -135,34 +143,19 @@ public class MainActivity extends AppCompatActivity implements ZAdapter.OnItemCl
 
         @Override
         protected Object doInBackground(Object[] params) {
-            String url = "http://news.ifeng.com/listpage/7129/"+page+"/list.shtmll";
-            try {
-                Document doc = Jsoup.connect(url).get();
-                Elements units = doc.getElementsByClass("comListBox");
-                Iterator<Element> items = units.iterator();
-                if(page==1){
-                    data = new ArrayList<String>();
-                }
-                while (items.hasNext()){
-                    Element ele = items.next();
-                    Elements as = ele.getElementsByTag("a");
-                    data.add((data.size()+1)+"、"+as.first().text());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            data = ParseBox.getInstance().parse(page);
+            ParseNews.getInstance().parse(page);
             return null;
         }
 
         @Override
         protected void onPostExecute(Object o) {
             if(adapter==null || page==1){
-                adapter = new ZAdapter();
-                adapter.setDatas(data);
+                adapter = new ZNewAdapter(MainActivity.this);
+                adapter.setDatas(ParseNews.getInstance().getData());
                 adapter.setOnItemClickListener(MainActivity.this);
                 myAdapter = new SlideInBottomAnimationAdapter(adapter);
                 recyclerView.setAdapter(myAdapter);
-
             }
             myAdapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
