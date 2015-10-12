@@ -1,7 +1,5 @@
 package com.zongfi.myrecycleview.parse;
 
-import com.zongfi.myrecycleview.pojo.News;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

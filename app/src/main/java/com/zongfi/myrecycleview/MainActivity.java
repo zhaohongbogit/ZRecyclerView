@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
                 new InitDataLoad().execute();
             }
         });
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
