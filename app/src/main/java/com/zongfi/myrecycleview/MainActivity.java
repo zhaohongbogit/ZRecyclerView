@@ -26,6 +26,7 @@ import com.zongfi.myrecycleview.pojo.News;
 import com.zongfi.myrecycleview.widget.Divider;
 import com.zongfi.myrecycleview.widget.ZAdapter;
 import com.zongfi.myrecycleview.widget.ZNewAdapter;
+import com.zongfi.myrecycleview.widget.ZRecyclerView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
     @ViewInject(R.id.main_swipe)
     SwipeRefreshLayout swipeRefreshLayout;
     @ViewInject(R.id.listView)
-    RecyclerView recyclerView;
+    ZRecyclerView recyclerView;
 
     SlideInBottomAnimationAdapter myAdapter;
     LinearLayoutManager layoutManager;
@@ -67,10 +68,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new Divider());
-
-        //增加列表外文件
-//        View headerView = getLayoutInflater().inflate(R.layout.main_header,null);
-//        recyclerView.addView(headerView,0);
+        recyclerView.setEmptyView(View.inflate(MainActivity.this,R.layout.main_header,null));
 
         new InitDataLoad().execute();
     }
