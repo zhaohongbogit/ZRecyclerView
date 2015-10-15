@@ -1,12 +1,12 @@
-package com.zongfi.myrecycleview.avh.vh;
+package com.zongfi.zrecycleview.avh.vh;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zongfi.myrecycleview.R;
-import com.zongfi.myrecycleview.frame.ZBaseViewHolder;
+import com.zongfi.zrecycleview.R;
+import com.zongfi.zrecycleview.frame.ZBaseViewHolder;
 
 /**
  * Created by ZHZEPHI on 2015/10/15.

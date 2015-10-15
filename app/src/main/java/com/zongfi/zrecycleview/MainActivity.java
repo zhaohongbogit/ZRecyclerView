@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview;
+package com.zongfi.zrecycleview;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,12 +12,12 @@ import android.view.View;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zongfi.myrecycleview.parse.ParseNews;
-import com.zongfi.myrecycleview.pojo.News;
-import com.zongfi.myrecycleview.avh.adapter.NewsAdapter;
-import com.zongfi.myrecycleview.frame.ZListRecyclerView;
-import com.zongfi.myrecycleview.frame.ZRecyclerView;
-import com.zongfi.myrecycleview.frame.ZSwipeRefreshLayout;
+import com.zongfi.zrecycleview.parse.ParseNews;
+import com.zongfi.zrecycleview.pojo.News;
+import com.zongfi.zrecycleview.avh.adapter.NewsAdapter;
+import com.zongfi.zrecycleview.frame.ZListRecyclerView;
+import com.zongfi.zrecycleview.frame.ZRecyclerView;
+import com.zongfi.zrecycleview.frame.ZSwipeRefreshLayout;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview;
+package com.zongfi.zrecycleview;
 
 import org.junit.Test;
 

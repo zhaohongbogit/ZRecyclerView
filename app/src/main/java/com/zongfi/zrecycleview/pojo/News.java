@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview.pojo;
+package com.zongfi.zrecycleview.pojo;
 
 /**
  * Created by ZHZEPHI on 2015/10/10.

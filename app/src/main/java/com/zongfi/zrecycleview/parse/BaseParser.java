@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview.parse;
+package com.zongfi.zrecycleview.parse;
 
 import java.util.List;
 

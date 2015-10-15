@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview.frame;
+package com.zongfi.zrecycleview.frame;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

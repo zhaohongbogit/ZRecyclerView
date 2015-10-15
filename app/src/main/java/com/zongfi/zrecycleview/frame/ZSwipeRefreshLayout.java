@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview.frame;
+package com.zongfi.zrecycleview.frame;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;

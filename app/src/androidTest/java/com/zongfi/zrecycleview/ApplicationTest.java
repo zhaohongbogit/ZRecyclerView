@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview;
+package com.zongfi.zrecycleview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
