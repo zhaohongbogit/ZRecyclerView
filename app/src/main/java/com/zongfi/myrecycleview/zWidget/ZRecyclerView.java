@@ -1,8 +1,11 @@
-package com.zongfi.myrecycleview.widget;
+package com.zongfi.myrecycleview.zWidget;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import android.widget.RelativeLayout;
 public class ZRecyclerView extends RecyclerView {
 
     private View emptyView;
+    OnLoadListener onLoadListener; //加载更多组件
 
     public ZRecyclerView(Context context) {
         super(context);
@@ -93,5 +97,26 @@ public class ZRecyclerView extends RecyclerView {
         emptyView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         ((ViewGroup) getParent()).addView(emptyView);
         checkIfEmpty();
+    }
+
+    public void setOnLoadListener(final OnLoadListener onLoadListener) {
+        this.onLoadListener = onLoadListener;
+        this.addOnScrollListener(new OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LayoutManager layoutManager = getLayoutManager();
+                int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+                int totalItemCount = layoutManager.getItemCount();
+                //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
+                if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
+                    onLoadListener.onLoad();
+                }
+            }
+        });
+    }
+
+    public interface OnLoadListener {
+        void onLoad();
     }
 }
