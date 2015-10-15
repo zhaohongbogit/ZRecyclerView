@@ -8,39 +8,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.zongfi.myrecycleview.network.ZHttpUtils;
-import com.zongfi.myrecycleview.parse.ParseBox;
 import com.zongfi.myrecycleview.parse.ParseNews;
 import com.zongfi.myrecycleview.pojo.News;
 import com.zongfi.myrecycleview.widget.Divider;
-import com.zongfi.myrecycleview.widget.ZAdapter;
 import com.zongfi.myrecycleview.widget.ZNewAdapter;
 import com.zongfi.myrecycleview.widget.ZRecyclerView;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
 
-public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -68,12 +52,12 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new Divider());
-        recyclerView.setEmptyView(View.inflate(MainActivity.this,R.layout.main_header,null));
+        recyclerView.setEmptyView(View.inflate(MainActivity.this, R.layout.main_header, null));
 
         new InitDataLoad().execute();
     }
 
-    private void initSwife(){
+    private void initSwife() {
 //        swipeRefreshLayout.setColorSchemeResources(R.color.swife_color1,R.color.swife_color2,R.color.swife_color3,R.color.swife_color4,R.color.swife_color5);
 //        swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
 //        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(android.R.color.white);
@@ -142,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
 
         @Override
         protected void onPreExecute() {
-            if(ParseNews.getInstance().isRunning){
+            if (ParseNews.getInstance().isRunning) {
                 cancel(true);
             }
             super.onPreExecute();
@@ -157,13 +141,13 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
         @Override
         protected void onPostExecute(Object o) {
             ArrayList<News> data = (ArrayList<News>) o;
-            if(adapter==null){
+            if (adapter == null) {
                 adapter = new ZNewAdapter(MainActivity.this);
                 adapter.setOnItemClickListener(MainActivity.this);
                 myAdapter = new SlideInBottomAnimationAdapter(adapter);
                 recyclerView.setAdapter(myAdapter);
             }
-            if(data!=null && data.size()>0){
+            if (data != null && data.size() > 0) {
                 adapter.addDatas(data);
                 myAdapter.notifyDataSetChanged();
             }
