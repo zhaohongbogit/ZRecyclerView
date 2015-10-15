@@ -14,16 +14,16 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.zongfi.myrecycleview.parse.ParseNews;
 import com.zongfi.myrecycleview.pojo.News;
-import com.zongfi.myrecycleview.widget.ZNewAdapter;
-import com.zongfi.myrecycleview.zWidget.ZListRecyclerView;
-import com.zongfi.myrecycleview.zWidget.ZRecyclerView;
-import com.zongfi.myrecycleview.zWidget.ZSwipeRefreshLayout;
+import com.zongfi.myrecycleview.avh.adapter.NewsAdapter;
+import com.zongfi.myrecycleview.frame.ZListRecyclerView;
+import com.zongfi.myrecycleview.frame.ZRecyclerView;
+import com.zongfi.myrecycleview.frame.ZSwipeRefreshLayout;
 
 import java.util.ArrayList;
 
 import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
 
-public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements NewsAdapter.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
 
     SlideInBottomAnimationAdapter myAdapter;
 
-    ZNewAdapter adapter;
+    NewsAdapter adapter;
     Integer page = 1;
 
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
     }
 
     private void initSwife() {
-        recyclerView.setEmptyView(View.inflate(MainActivity.this, R.layout.main_header, null));
+        recyclerView.setEmptyView(View.inflate(MainActivity.this, R.layout.main_empty, null));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements ZNewAdapter.OnIte
         protected void onPostExecute(Object o) {
             ArrayList<News> data = (ArrayList<News>) o;
             if (adapter == null) {
-                adapter = new ZNewAdapter(MainActivity.this);
+                adapter = new NewsAdapter(MainActivity.this);
                 adapter.setOnItemClickListener(MainActivity.this);
                 myAdapter = new SlideInBottomAnimationAdapter(adapter);
                 recyclerView.setAdapter(myAdapter);

@@ -1,4 +1,4 @@
-package com.zongfi.myrecycleview.zWidget;
+package com.zongfi.myrecycleview.frame;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

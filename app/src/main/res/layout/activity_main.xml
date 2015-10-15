@@ -5,15 +5,15 @@
     android:background="@android:color/darker_gray"
     tools:context=".MainActivity">
 
-    <com.zongfi.myrecycleview.zWidget.ZSwipeRefreshLayout
+    <com.zongfi.myrecycleview.frame.ZSwipeRefreshLayout
         android:id="@+id/main_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zongfi.myrecycleview.zWidget.ZListRecyclerView
+        <com.zongfi.myrecycleview.frame.ZListRecyclerView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </com.zongfi.myrecycleview.zWidget.ZSwipeRefreshLayout>
+    </com.zongfi.myrecycleview.frame.ZSwipeRefreshLayout>
 </RelativeLayout>
