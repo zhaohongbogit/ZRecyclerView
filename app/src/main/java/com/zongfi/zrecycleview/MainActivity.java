@@ -12,6 +12,8 @@ import android.view.View;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.zongfi.zrecycleview.frame.HttpRequestUtils;
+import com.zongfi.zrecycleview.frame.ZListPageView;
 import com.zongfi.zrecycleview.parse.ParseNews;
 import com.zongfi.zrecycleview.pojo.News;
 import com.zongfi.zrecycleview.avh.adapter.NewsAdapter;
@@ -30,102 +32,44 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
     @ViewInject(R.id.main_swipe)
     ZSwipeRefreshLayout swipeRefreshLayout;
     @ViewInject(R.id.listView)
-    ZListRecyclerView recyclerView;
-
-    SlideInBottomAnimationAdapter myAdapter;
+    ZListPageView recyclerView;
 
     NewsAdapter adapter;
-    Integer page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ViewUtils.inject(this);
-
         initSwife();
-        new InitDataLoad().execute();
     }
 
     private void initSwife() {
         recyclerView.setEmptyView(View.inflate(MainActivity.this, R.layout.main_empty, null));
+        adapter = new NewsAdapter(MainActivity.this);
+        HttpRequestUtils httpRequestUtils = new HttpRequestUtils(MainActivity.this,new ParseNews(),adapter,recyclerView,this);
+        httpRequestUtils.setSwipeRefreshLayout(swipeRefreshLayout);
+        recyclerView.setHttpRequestUtils(httpRequestUtils);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                page = 1;
-                adapter = null;
-                new InitDataLoad().execute();
+                recyclerView.showPageFirst();
             }
         });
         recyclerView.setOnLoadListener(new ZRecyclerView.OnLoadListener() {
             @Override
             public void onLoad() {
-                page++;
-                new InitDataLoad().execute();
+                recyclerView.showPageNext();
             }
         });
+        recyclerView.showPageFirst();
     }
 
     @Override
     public void onItemClick(View view, int position) {
-//        Toast.makeText(this, data.get(position), Toast.LENGTH_SHORT).show();
         News news = (News) adapter.getDatas().get(position);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getSourceUrl()));
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    class InitDataLoad extends AsyncTask {
-
-        @Override
-        protected void onPreExecute() {
-            if (ParseNews.getInstance().isRunning) {
-                cancel(true);
-            }
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            return ParseNews.getInstance().parse(page);
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            ArrayList<News> data = (ArrayList<News>) o;
-            if (adapter == null) {
-                adapter = new NewsAdapter(MainActivity.this);
-                adapter.setOnItemClickListener(MainActivity.this);
-                myAdapter = new SlideInBottomAnimationAdapter(adapter);
-                recyclerView.setAdapter(myAdapter);
-            }
-            if (data != null && data.size() > 0) {
-                adapter.addDatas(data);
-                myAdapter.notifyDataSetChanged();
-            }
-            swipeRefreshLayout.setRefreshing(false);
-            super.onPostExecute(o);
-        }
-    }
 }

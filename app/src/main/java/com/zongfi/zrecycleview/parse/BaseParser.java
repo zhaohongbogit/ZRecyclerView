@@ -5,6 +5,9 @@ import java.util.List;
 /**
  * Created by ZHZEPHI on 2015/10/10.
  */
-public interface BaseParser {
-    List parse(Integer page);
+public abstract class BaseParser implements IParser{
+
+    public boolean isRunning = false;
+
+    public abstract List parse(Integer page);
 }

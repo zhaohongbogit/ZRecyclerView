@@ -15,20 +15,7 @@ import java.util.List;
 /**
  * Created by ZHZEPHI on 2015/10/10.
  */
-public class ParseNews implements BaseParser{
-
-    public Boolean isRunning = false;
-
-    private static ParseNews parseNews;
-
-    private ParseNews(){};
-
-    public static ParseNews getInstance(){
-        if(parseNews==null){
-            parseNews = new ParseNews();
-        }
-        return parseNews;
-    }
+public class ParseNews extends BaseParser{
 
     @Override
     public List<News> parse(Integer page) {
