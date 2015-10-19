@@ -22,14 +22,21 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
 
     public ZListPageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        addListener();
     }
 
     public ZListPageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        addListener();
     }
 
     public void setHttpRequestUtils(HttpRequestUtils httpRequestUtils) {
         this.httpRequestUtils = httpRequestUtils;
+        addListener();
+    }
+
+    private void addListener(){
+        addLoadNextListener();
     }
 
     private void addLoadNextListener(){
@@ -43,7 +50,7 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
                     int totalItemCount = layoutManager.getItemCount();
                     //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
                     if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
-                        onLoadListener.onLoad();
+                        showPageNext();
                     }
                 }
             });

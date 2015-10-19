@@ -56,12 +56,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
                 recyclerView.showPageFirst();
             }
         });
-        recyclerView.setOnLoadListener(new ZRecyclerView.OnLoadListener() {
-            @Override
-            public void onLoad() {
-                recyclerView.showPageNext();
-            }
-        });
         recyclerView.showPageFirst();
     }
 
