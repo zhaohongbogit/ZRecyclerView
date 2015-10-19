@@ -1,6 +1,8 @@
 package com.zongfi.zrecycleview.frame;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.zongfi.zrecycleview.frame.page.IPageList;
@@ -30,6 +32,24 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
         this.httpRequestUtils = httpRequestUtils;
     }
 
+    private void addLoadNextListener(){
+        if(onLoadListener==null){
+            addOnScrollListener(new OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    LayoutManager layoutManager = getLayoutManager();
+                    int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+                    int totalItemCount = layoutManager.getItemCount();
+                    //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
+                    if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
+                        onLoadListener.onLoad();
+                    }
+                }
+            });
+        }
+    }
+
     @Override
     public void showPageFirst() {
         if(httpRequestUtils!=null){
@@ -43,6 +63,5 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
             httpRequestUtils.exec(page.getNextPage());
         }
     }
-
 
 }
