@@ -50,12 +50,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
         HttpRequestUtils httpRequestUtils = new HttpRequestUtils(MainActivity.this,new ParseNews(),adapter,recyclerView,this);
         httpRequestUtils.setSwipeRefreshLayout(swipeRefreshLayout);
         recyclerView.setHttpRequestUtils(httpRequestUtils);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                recyclerView.showPageFirst();
-            }
-        });
         recyclerView.showPageFirst();
     }
 

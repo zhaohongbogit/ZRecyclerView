@@ -75,4 +75,8 @@ public class HttpRequestUtils {
     public void setSwipeRefreshLayout(ZSwipeRefreshLayout swipeRefreshLayout) {
         this.swipeRefreshLayout = swipeRefreshLayout;
     }
+
+    public ZSwipeRefreshLayout getSwipeRefreshLayout() {
+        return swipeRefreshLayout;
+    }
 }

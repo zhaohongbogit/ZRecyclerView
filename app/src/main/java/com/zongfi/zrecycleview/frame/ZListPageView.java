@@ -1,6 +1,7 @@
 package com.zongfi.zrecycleview.frame;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -36,6 +37,7 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
     }
 
     private void addListener(){
+        addSwipeRefreshListener();
         addLoadNextListener();
     }
 
@@ -54,6 +56,20 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
                     }
                 }
             });
+        }
+    }
+
+    private void addSwipeRefreshListener(){
+        if(httpRequestUtils!=null){
+            ZSwipeRefreshLayout swipeRefresh = httpRequestUtils.getSwipeRefreshLayout();
+            if(swipeRefresh!=null){
+                swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        showPageFirst();
+                    }
+                });
+            }
         }
     }
 
