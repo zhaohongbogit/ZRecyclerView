@@ -16,4 +16,6 @@
             android:layout_height="match_parent" />
 
     </com.zongfi.zrecycleview.frame.ZSwipeRefreshLayout>
+
+    <include layout="@layout/main_empty"/>
 </RelativeLayout>

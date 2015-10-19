@@ -70,4 +70,14 @@ public abstract class ZBaseAdapter<T, V> extends RecyclerView.Adapter<ZBaseViewH
         }
         datas.addAll(data);
     }
+
+    /*
+    有些要求需要在刷新第一页数据的时候清空列表或者adapter数据
+    这时候，只需要在请求网络的第一页数据时候，调用此方法，即可清空数据
+     */
+    public void removeAll(){
+        if(datas!=null){
+            datas.removeAll(datas);
+        }
+    }
 }

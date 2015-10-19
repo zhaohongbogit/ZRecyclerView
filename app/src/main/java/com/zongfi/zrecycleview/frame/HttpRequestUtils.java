@@ -2,7 +2,9 @@ package com.zongfi.zrecycleview.frame;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import com.zongfi.zrecycleview.frame.page.Page;
 import com.zongfi.zrecycleview.parse.BaseParser;
 
 import java.util.ArrayList;
@@ -23,7 +25,8 @@ public class HttpRequestUtils {
     ZSwipeRefreshLayout swipeRefreshLayout;
     SlideInBottomAnimationAdapter myAdapter;
 
-    private int page = 1;
+    private Page page;
+    private int pageIndex = 1;
 
     public HttpRequestUtils(Context context, BaseParser parser,ZBaseAdapter adapter,ZListPageView recyclerView,ZBaseAdapter.OnItemClickListener onItemClickListener){
         this.context = context;
@@ -33,9 +36,10 @@ public class HttpRequestUtils {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public void exec(int pageIndex){
-        this.page = pageIndex;
-        new InitDataLoad().execute(pageIndex);
+    public void exec(Page page,int pageIndex){
+        this.page = page;
+        this.pageIndex = pageIndex;
+        new InitDataLoad().execute();
     }
 
     class InitDataLoad extends AsyncTask {
@@ -50,13 +54,17 @@ public class HttpRequestUtils {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            return parser.parse((int)params[0]);
+            Log.e("=============",String.valueOf(pageIndex));
+            if(pageIndex!=1){
+                page.setPageIndex();
+            }
+            return parser.parse(pageIndex);
         }
 
         @Override
         protected void onPostExecute(Object o) {
             ArrayList data = (ArrayList) o;
-            if (page==1) {
+            if (pageIndex==1) {
                 adapter.setOnItemClickListener(onItemClickListener);
                 myAdapter = new SlideInBottomAnimationAdapter(adapter);
                 recyclerView.setAdapter(myAdapter);
@@ -70,6 +78,7 @@ public class HttpRequestUtils {
             }
             super.onPostExecute(o);
         }
+
     }
 
     public void setSwipeRefreshLayout(ZSwipeRefreshLayout swipeRefreshLayout) {
@@ -79,4 +88,5 @@ public class HttpRequestUtils {
     public ZSwipeRefreshLayout getSwipeRefreshLayout() {
         return swipeRefreshLayout;
     }
+
 }

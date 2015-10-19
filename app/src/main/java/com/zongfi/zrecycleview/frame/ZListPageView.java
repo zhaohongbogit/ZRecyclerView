@@ -50,8 +50,8 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
                     LayoutManager layoutManager = getLayoutManager();
                     int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                     int totalItemCount = layoutManager.getItemCount();
-                    //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
-                    if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
+                    //lastVisibleItem>=totalItemCount-1表示滚动到最后1条，dy>0表示向下滚动
+                    if (lastVisibleItem >= totalItemCount-1 && dy > 0) {
                         showPageNext();
                     }
                 }
@@ -76,14 +76,14 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
     @Override
     public void showPageFirst() {
         if(httpRequestUtils!=null){
-            httpRequestUtils.exec(page.getFirstPage());
+            httpRequestUtils.exec(page,page.getFirstPage());
         }
     }
 
     @Override
     public void showPageNext() {
         if(httpRequestUtils!=null){
-            httpRequestUtils.exec(page.getNextPage());
+            httpRequestUtils.exec(page,page.getNextPage());
         }
     }
 

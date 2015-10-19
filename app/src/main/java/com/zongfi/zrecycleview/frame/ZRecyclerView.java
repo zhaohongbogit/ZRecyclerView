@@ -89,8 +89,6 @@ public class ZRecyclerView extends RecyclerView {
             this.emptyView.setVisibility(View.GONE);
         }
         this.emptyView = emptyView;
-        emptyView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        ((ViewGroup) getParent()).addView(emptyView);
         checkIfEmpty();
     }
 
@@ -103,8 +101,8 @@ public class ZRecyclerView extends RecyclerView {
                 LayoutManager layoutManager = getLayoutManager();
                 int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                 int totalItemCount = layoutManager.getItemCount();
-                //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
-                if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
+                //lastVisibleItem>=totalItemCount-1表示滚动到最后1条，dy>0表示向下滚动
+                if (lastVisibleItem >= totalItemCount - 1 && dy > 0) {
                     onLoadListener.onLoad();
                 }
             }

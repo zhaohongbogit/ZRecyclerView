@@ -12,10 +12,10 @@ public class Page {
     }
 
     public int getNextPage() {
-        return ++pageIndex;
+        return pageIndex+1;
     }
 
-    public int getPage() {
-        return pageIndex;
+    public void setPageIndex() {
+        pageIndex++;
     }
 }

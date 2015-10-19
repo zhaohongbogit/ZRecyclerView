@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
     ZSwipeRefreshLayout swipeRefreshLayout;
     @ViewInject(R.id.listView)
     ZListPageView recyclerView;
+    @ViewInject(R.id.empty)
+    RelativeLayout emptyLayout;
 
     NewsAdapter adapter;
 
@@ -45,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.OnIte
     }
 
     private void initSwife() {
-        recyclerView.setEmptyView(View.inflate(MainActivity.this, R.layout.main_empty, null));
         adapter = new NewsAdapter(MainActivity.this);
         HttpRequestUtils httpRequestUtils = new HttpRequestUtils(MainActivity.this,new ParseNews(),adapter,recyclerView,this);
         httpRequestUtils.setSwipeRefreshLayout(swipeRefreshLayout);
         recyclerView.setHttpRequestUtils(httpRequestUtils);
+        recyclerView.setEmptyView(emptyLayout);
         recyclerView.showPageFirst();
     }
 
