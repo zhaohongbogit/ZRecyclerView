@@ -2,7 +2,6 @@ package com.zongfi.zrecycleview.frame;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.zongfi.zrecycleview.frame.page.Page;
 import com.zongfi.zrecycleview.parse.BaseParser;
@@ -49,12 +48,13 @@ public class HttpRequestUtils {
             if (parser.isRunning) {
                 cancel(true);
             }
+            parser.isRunning = true;
             super.onPreExecute();
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
-            Log.e("=============",String.valueOf(pageIndex));
+//            Log.e("=============",String.valueOf(pageIndex));
             if(pageIndex!=1){
                 page.setPageIndex();
             }
@@ -63,6 +63,7 @@ public class HttpRequestUtils {
 
         @Override
         protected void onPostExecute(Object o) {
+            parser.isRunning = false;
             ArrayList data = (ArrayList) o;
             if (pageIndex==1) {
                 adapter.setOnItemClickListener(onItemClickListener);
@@ -88,5 +89,4 @@ public class HttpRequestUtils {
     public ZSwipeRefreshLayout getSwipeRefreshLayout() {
         return swipeRefreshLayout;
     }
-
 }

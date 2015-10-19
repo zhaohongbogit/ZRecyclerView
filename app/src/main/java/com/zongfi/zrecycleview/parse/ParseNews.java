@@ -19,7 +19,6 @@ public class ParseNews extends BaseParser{
 
     @Override
     public List<News> parse(Integer page) {
-        isRunning = true;
         if(page==null){
             page = 1;
         }
@@ -42,7 +41,6 @@ public class ParseNews extends BaseParser{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        isRunning = false;
         return data;
     }
 

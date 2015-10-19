@@ -12,7 +12,7 @@ import com.zongfi.zrecycleview.frame.page.Page;
 /**
  * Created by ZHZEPHI on 2015/10/16.
  */
-public class ZListPageView extends ZListRecyclerView implements IPageList{
+public class ZListPageView extends ZListRecyclerView implements IPageList {
 
     HttpRequestUtils httpRequestUtils;
     Page page = new Page();
@@ -36,13 +36,13 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
         addListener();
     }
 
-    private void addListener(){
+    private void addListener() {
         addSwipeRefreshListener();
         addLoadNextListener();
     }
 
-    private void addLoadNextListener(){
-        if(onLoadListener==null){
+    private void addLoadNextListener() {
+        if (onLoadListener == null) {
             addOnScrollListener(new OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -50,8 +50,8 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
                     LayoutManager layoutManager = getLayoutManager();
                     int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                     int totalItemCount = layoutManager.getItemCount();
-                    //lastVisibleItem>=totalItemCount-1表示滚动到最后1条，dy>0表示向下滚动
-                    if (lastVisibleItem >= totalItemCount-1 && dy > 0) {
+                    //lastVisibleItem>=totalItemCount-2表示滚动到最后2条，dy>0表示向下滚动
+                    if (lastVisibleItem >= totalItemCount - 2 && dy > 0) {
                         showPageNext();
                     }
                 }
@@ -59,10 +59,10 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
         }
     }
 
-    private void addSwipeRefreshListener(){
-        if(httpRequestUtils!=null){
+    private void addSwipeRefreshListener() {
+        if (httpRequestUtils != null) {
             ZSwipeRefreshLayout swipeRefresh = httpRequestUtils.getSwipeRefreshLayout();
-            if(swipeRefresh!=null){
+            if (swipeRefresh != null) {
                 swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
@@ -75,15 +75,15 @@ public class ZListPageView extends ZListRecyclerView implements IPageList{
 
     @Override
     public void showPageFirst() {
-        if(httpRequestUtils!=null){
-            httpRequestUtils.exec(page,page.getFirstPage());
+        if (httpRequestUtils != null) {
+            httpRequestUtils.exec(page, page.getFirstPage());
         }
     }
 
     @Override
     public void showPageNext() {
-        if(httpRequestUtils!=null){
-            httpRequestUtils.exec(page,page.getNextPage());
+        if (httpRequestUtils != null) {
+            httpRequestUtils.exec(page, page.getNextPage());
         }
     }
 
