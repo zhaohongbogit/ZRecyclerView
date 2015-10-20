@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZRecyclerView.iml" filepath="$PROJECT_DIR$/ZRecyclerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zrecycler-sample/zrecycler-sample.iml" filepath="$PROJECT_DIR$/zrecycler-sample/zrecycler-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zrecyclerlib/zrecyclerlib.iml" filepath="$PROJECT_DIR$/zrecyclerlib/zrecyclerlib.iml" />
     </modules>
   </component>
 </project>
