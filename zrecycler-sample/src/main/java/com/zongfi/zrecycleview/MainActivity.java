@@ -2,29 +2,19 @@ package com.zongfi.zrecycleview;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zongfi.zrecycleview.frame.HttpRequestUtils;
-import com.zongfi.zrecycleview.frame.ZListPageView;
+import com.zhzephi.recycler.ZListPageView;
+import com.zhzephi.recycler.network.HttpRequestUtils;
+import com.zhzephi.recycler.widget.ZSwipeRefreshLayout;
 import com.zongfi.zrecycleview.parse.ParseNews;
 import com.zongfi.zrecycleview.pojo.News;
-import com.zongfi.zrecycleview.avh.adapter.NewsAdapter;
-import com.zongfi.zrecycleview.frame.ZListRecyclerView;
-import com.zongfi.zrecycleview.frame.ZRecyclerView;
-import com.zongfi.zrecycleview.frame.ZSwipeRefreshLayout;
-
-import java.util.ArrayList;
-
-import jp.wasabeef.recyclerview.animators.adapters.SlideInBottomAnimationAdapter;
+import com.zongfi.zrecycleview.adapter.NewsAdapter;
 
 public class MainActivity extends AppCompatActivity implements NewsAdapter.OnItemClickListener {
 

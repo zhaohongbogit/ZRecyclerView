@@ -1,14 +1,14 @@
-package com.zongfi.zrecycleview.avh.adapter;
+package com.zongfi.zrecycleview.adapter;
 
 import android.content.Context;
 import android.view.View;
 
 import com.lidroid.xutils.BitmapUtils;
+import com.zhzephi.recycler.adapter.ZBaseAdapter;
+import com.zhzephi.recycler.viewholder.ZBaseViewHolder;
 import com.zongfi.zrecycleview.R;
-import com.zongfi.zrecycleview.avh.vh.NewsViewHolder;
-import com.zongfi.zrecycleview.frame.ZBaseViewHolder;
+import com.zongfi.zrecycleview.viewholder.NewsViewHolder;
 import com.zongfi.zrecycleview.pojo.News;
-import com.zongfi.zrecycleview.frame.ZBaseAdapter;
 
 /**
  * Created by ZHZEPHI on 2015/9/25.

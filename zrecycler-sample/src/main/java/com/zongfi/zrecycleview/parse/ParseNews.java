@@ -1,5 +1,6 @@
 package com.zongfi.zrecycleview.parse;
 
+import com.zhzephi.recycler.parse.BaseParser;
 import com.zongfi.zrecycleview.pojo.News;
 
 import org.jsoup.Jsoup;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by ZHZEPHI on 2015/10/10.
  */
-public class ParseNews extends BaseParser{
+public class ParseNews extends BaseParser {
 
     @Override
     public List<News> parse(Integer page) {
