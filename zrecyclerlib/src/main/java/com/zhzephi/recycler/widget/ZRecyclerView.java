@@ -1,11 +1,10 @@
-package com.zongfi.zrecycleview.frame;
+package com.zhzephi.recycler.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * Created by ZHZEPHI on 2015/10/12.
@@ -13,7 +12,7 @@ import android.view.ViewGroup;
 public class ZRecyclerView extends RecyclerView {
 
     private View emptyView;
-    OnLoadListener onLoadListener; //加载更多组件
+    public OnLoadListener onLoadListener; //加载更多组件
 
     public ZRecyclerView(Context context) {
         super(context);

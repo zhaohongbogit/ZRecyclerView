@@ -1,4 +1,4 @@
-package com.zongfi.zrecycleview.frame;
+package com.zhzephi.recycler.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

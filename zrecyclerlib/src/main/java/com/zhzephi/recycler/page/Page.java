@@ -1,4 +1,4 @@
-package com.zongfi.zrecycleview.frame.page;
+package com.zhzephi.recycler.page;
 
 /**
  * Created by ZHZEPHI on 2015/10/16.
