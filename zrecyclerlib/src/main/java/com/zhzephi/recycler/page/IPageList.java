@@ -6,12 +6,12 @@ package com.zhzephi.recycler.page;
 public interface IPageList {
 
     /**
-     * 加载第一页数据
+     * Loading first page
      */
     void showPageFirst();
 
     /**
-     * 加载下一页数据
+     * Loading next page
      */
     void showPageNext();
 }

@@ -31,7 +31,7 @@ public abstract class ZBaseAdapter<T, V> extends RecyclerView.Adapter<ZBaseViewH
 
     @Override
     public void onBindViewHolder(final ZBaseViewHolder holder, final int position) {
-        //设置点击事件
+        //Set click event
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,8 +74,7 @@ public abstract class ZBaseAdapter<T, V> extends RecyclerView.Adapter<ZBaseViewH
     }
 
     /*
-    有些要求需要在刷新第一页数据的时候清空列表或者adapter数据
-    这时候，只需要在请求网络的第一页数据时候，调用此方法，即可清空数据
+    Clear adapter data
      */
     public void removeAll(){
         if(datas!=null){

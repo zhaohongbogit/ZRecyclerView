@@ -12,7 +12,7 @@ import android.view.View;
 public class ZRecyclerView extends RecyclerView {
 
     private View emptyView;
-    public OnLoadListener onLoadListener; //加载更多组件
+    public OnLoadListener onLoadListener; //Load more
 
     public ZRecyclerView(Context context) {
         super(context);
@@ -100,7 +100,7 @@ public class ZRecyclerView extends RecyclerView {
                 LayoutManager layoutManager = getLayoutManager();
                 int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                 int totalItemCount = layoutManager.getItemCount();
-                //lastVisibleItem>=totalItemCount-1表示滚动到最后1条，dy>0表示向下滚动
+                //lastVisibleItem>=totalItemCount-1 is lost item，dy>0 is down
                 if (lastVisibleItem >= totalItemCount - 1 && dy > 0) {
                     onLoadListener.onLoad();
                 }

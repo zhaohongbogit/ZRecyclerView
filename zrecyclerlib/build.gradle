@@ -1,4 +1,39 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty('bintray.user')
+    key = properties.getProperty('bintray.apikey')
+
+    configurations = ['published', 'archives']
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'zrecyclerlib'
+
+    publishedGroupId = 'com.zhzephi.zrecyclerview'
+    libraryName = 'ZRecyclerViewLib'
+    artifact = 'zrecyclerlib'
+
+    siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
+    gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
+
+    libraryDescription = 'A List widget of RecyclerView on Android'
+    libraryVersion = '1.0.2'
+
+    developerId = 'zhzephi'
+    developerName = 'Zongfi Zhao'
+    developerEmail = 'zzf_soft@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 23
@@ -7,12 +42,12 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.2"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,3 +62,6 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:1.2.2'
     testCompile 'junit:junit:4.12'
 }
+
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
