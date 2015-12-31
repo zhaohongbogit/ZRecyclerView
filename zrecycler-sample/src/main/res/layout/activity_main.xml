@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zongfi.zrecycleview.frame.ZListPageView
+        <com.zhzephi.recycler.ZListPageView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </com.zhzephi.recycler.widget.ZSwipeRefreshLayout>
 
-    <include layout="@layout/main_empty"/>
+    <include layout="@layout/main_empty" />
 </RelativeLayout>

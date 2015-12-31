@@ -14,6 +14,13 @@
             <option value="$PROJECT_DIR$/zrecyclerlib" />
           </set>
         </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/zrecycler-sample" />
+            <option value="$PROJECT_DIR$/zrecyclerlib" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
