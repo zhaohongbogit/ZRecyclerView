@@ -15,6 +15,23 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontshrink
+-dontpreverify
+-dontoptimize
+-dontusemixedcaseclassnames
+
+-flattenpackagehierarchy
+-allowaccessmodification
+-printmapping map.txt
+
+# android-support-v4
+-dontwarn android.support.**
+-keep class android.support.** { *;}
+
+# android-support-v7-appcompat
+-dontwarn android.support.v7.**
+-keep class android.support.v7.** { *;}
+
 ################### for ZRecyclerView
 -keep public class com.zhzephi.** {
     public protected *;
