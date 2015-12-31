@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zhzephi.recycler.viewholder.ZBaseViewHolder;
+import org.zhzephi.recycler.viewholder.ZBaseViewHolder;
 import com.zongfi.zrecycleview.R;
 
 /**

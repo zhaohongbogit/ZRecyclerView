@@ -1,13 +1,13 @@
-package com.zhzephi.recycler.network;
+package org.zhzephi.recycler.network;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.zhzephi.recycler.ZListPageView;
-import com.zhzephi.recycler.adapter.ZBaseAdapter;
-import com.zhzephi.recycler.page.Page;
-import com.zhzephi.recycler.parse.BaseParser;
-import com.zhzephi.recycler.widget.ZSwipeRefreshLayout;
+import org.zhzephi.recycler.ZListPageView;
+import org.zhzephi.recycler.adapter.ZBaseAdapter;
+import org.zhzephi.recycler.page.Page;
+import org.zhzephi.recycler.parse.BaseParser;
+import org.zhzephi.recycler.widget.ZSwipeRefreshLayout;
 
 import java.util.ArrayList;
 

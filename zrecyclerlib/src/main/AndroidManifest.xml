@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zhzephi.recycler">
+    package="org.zhzephi.recycler">
 
     <application
         android:allowBackup="true"

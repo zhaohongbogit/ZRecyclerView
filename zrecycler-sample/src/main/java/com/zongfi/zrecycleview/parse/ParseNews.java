@@ -1,6 +1,6 @@
 package com.zongfi.zrecycleview.parse;
 
-import com.zhzephi.recycler.parse.BaseParser;
+import org.zhzephi.recycler.parse.BaseParser;
 import com.zongfi.zrecycleview.pojo.News;
 
 import org.jsoup.Jsoup;

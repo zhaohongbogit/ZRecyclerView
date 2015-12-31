@@ -1,4 +1,4 @@
-package com.zhzephi.recycler.widget;
+package org.zhzephi.recycler.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

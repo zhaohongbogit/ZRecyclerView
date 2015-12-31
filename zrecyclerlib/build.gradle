@@ -4,6 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 def siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
 def gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
+group = "org.zhzephi"
+version = '1.0.4'
 
 android {
     compileSdkVersion 23
@@ -13,7 +15,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 20151231
-        versionName '1.0.3'
+        versionName '1.0.4'
     }
     buildTypes {
         release {
@@ -29,7 +31,7 @@ install {
         pom {
             project {
                 packaging 'aar'
-                name 'ZRecyclerViewLib'
+                name 'ZRecyclerView'
                 description 'A List widget of RecyclerView on Android'
                 // #CONFIG# // project title
                 url siteUrl
@@ -89,12 +91,17 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "zrecyclerlib"
+        name = "ZRecyclerView"
         // #CONFIG# project name in jcenter
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
+        // #Version info
+        version {
+            name = '1.0.4-Final'
+            vcsTag = '1.0.4'
+        }
     }
 }
 

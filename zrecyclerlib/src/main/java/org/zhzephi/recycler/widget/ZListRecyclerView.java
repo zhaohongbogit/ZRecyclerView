@@ -1,4 +1,4 @@
-package com.zhzephi.recycler.widget;
+package org.zhzephi.recycler.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

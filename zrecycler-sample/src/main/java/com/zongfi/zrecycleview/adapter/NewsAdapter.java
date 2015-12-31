@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 import com.lidroid.xutils.BitmapUtils;
-import com.zhzephi.recycler.adapter.ZBaseAdapter;
-import com.zhzephi.recycler.viewholder.ZBaseViewHolder;
+import org.zhzephi.recycler.adapter.ZBaseAdapter;
+import org.zhzephi.recycler.viewholder.ZBaseViewHolder;
 import com.zongfi.zrecycleview.R;
 import com.zongfi.zrecycleview.viewholder.NewsViewHolder;
 import com.zongfi.zrecycleview.pojo.News;

@@ -1,4 +1,4 @@
-package com.zhzephi.recycler;
+package org.zhzephi.recycler;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -6,11 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.zhzephi.recycler.network.HttpRequestUtils;
-import com.zhzephi.recycler.page.IPageList;
-import com.zhzephi.recycler.page.Page;
-import com.zhzephi.recycler.widget.ZListRecyclerView;
-import com.zhzephi.recycler.widget.ZSwipeRefreshLayout;
+import org.zhzephi.recycler.network.HttpRequestUtils;
+import org.zhzephi.recycler.page.IPageList;
+import org.zhzephi.recycler.page.Page;
+import org.zhzephi.recycler.widget.ZListRecyclerView;
+import org.zhzephi.recycler.widget.ZSwipeRefreshLayout;
 
 /**
  * Created by ZHZEPHI on 2015/10/16.

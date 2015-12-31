@@ -5,17 +5,17 @@
     android:background="@android:color/darker_gray"
     tools:context=".MainActivity">
 
-    <com.zhzephi.recycler.widget.ZSwipeRefreshLayout
+    <org.zhzephi.recycler.widget.ZSwipeRefreshLayout
         android:id="@+id/main_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zhzephi.recycler.ZListPageView
+        <org.zhzephi.recycler.ZListPageView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </com.zhzephi.recycler.widget.ZSwipeRefreshLayout>
+    </org.zhzephi.recycler.widget.ZSwipeRefreshLayout>
 
     <include layout="@layout/main_empty" />
 </RelativeLayout>

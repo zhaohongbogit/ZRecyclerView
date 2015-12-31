@@ -9,9 +9,9 @@ import android.widget.RelativeLayout;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.zhzephi.recycler.ZListPageView;
-import com.zhzephi.recycler.network.HttpRequestUtils;
-import com.zhzephi.recycler.widget.ZSwipeRefreshLayout;
+import org.zhzephi.recycler.ZListPageView;
+import org.zhzephi.recycler.network.HttpRequestUtils;
+import org.zhzephi.recycler.widget.ZSwipeRefreshLayout;
 import com.zongfi.zrecycleview.parse.ParseNews;
 import com.zongfi.zrecycleview.pojo.News;
 import com.zongfi.zrecycleview.adapter.NewsAdapter;

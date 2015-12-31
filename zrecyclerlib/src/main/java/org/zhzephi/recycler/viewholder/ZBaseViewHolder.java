@@ -1,4 +1,4 @@
-package com.zhzephi.recycler.viewholder;
+package org.zhzephi.recycler.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

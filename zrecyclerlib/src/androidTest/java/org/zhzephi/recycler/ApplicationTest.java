@@ -1,4 +1,4 @@
-package com.zhzephi.recycler;
+package org.zhzephi.recycler;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

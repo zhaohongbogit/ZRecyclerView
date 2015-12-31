@@ -1,11 +1,11 @@
-package com.zhzephi.recycler.adapter;
+package org.zhzephi.recycler.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zhzephi.recycler.viewholder.ZBaseViewHolder;
+import org.zhzephi.recycler.viewholder.ZBaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
