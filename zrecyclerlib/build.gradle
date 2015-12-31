@@ -5,7 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 def siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
 def gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
 group = "org.zhzephi"
-version = '1.0.5'
+version = '1.0.7'
 
 android {
     compileSdkVersion 23
@@ -15,11 +15,11 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 20151231
-        versionName '1.0.5'
+        versionName '1.0.7'
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -99,8 +99,8 @@ bintray {
         publish = true
         // #Version info
         version {
-            name = '1.0.5-Final'
-            vcsTag = '1.0.5'
+            name = '1.0.7-Final'
+            vcsTag = '1.0.7'
         }
     }
 }
