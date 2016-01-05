@@ -5,7 +5,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 def siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
 def gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
 group = "org.zhzephi"
-version = '1.0.1'
+version = '1.1.1'
 
 android {
     compileSdkVersion 23
@@ -15,7 +15,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 20160105
-        versionName '1.0.1'
+        versionName '1.1.1'
     }
     buildTypes {
         release {
@@ -99,19 +99,20 @@ bintray {
         publish = true
         // #Version info
         version {
-            name = '1.0.1-SNAPSHOT'
-            vcsTag = '1.0.1'
+            name = '1.1.1.Final'
+            vcsTag = '1.1.1'
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
                 passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
-                //            mavenCentralSync {
-//                sync = true //Optional (true by default). Determines whether to sync the version to Maven Central.
-//                user = properties.getProperty("bintray.oss.user") //OSS user token
-//                password = properties.getProperty("bintray.oss.password") //OSS user password
-//                close = '1' //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
-//            }
-                //https://github.com/danielemaddaluno/gradle-jcenter-publish
             }
+            mavenCentralSync {
+                sync = true
+                //Optional (true by default). Determines whether to sync the version to Maven Central.
+                user = properties.getProperty("bintray.oss.user") //OSS user token
+                password = properties.getProperty("bintray.oss.password") //OSS user password
+                close = '1' //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
+            }
+            //https://github.com/danielemaddaluno/gradle-jcenter-publish
         }
     }
 }
