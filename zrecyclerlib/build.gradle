@@ -1,11 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
-
-def siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
-def gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
-group = "org.zhzephi"
-version = '1.1.1'
 
 android {
     compileSdkVersion 23
@@ -15,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 20160105
-        versionName '1.1.1'
+        versionName '2.1.0'
     }
     buildTypes {
         release {
@@ -25,96 +18,28 @@ android {
     }
 }
 
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                name 'ZRecyclerLib'
-                description 'A List widget of RecyclerView on Android'
-                // #CONFIG# // project title
-                url siteUrl
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'zhzephi'
-                        // #CONFIG# // your user id (you can write your nickname)
-                        name 'Zongfi.Zhao'
-                        // #CONFIG# // your user name
-                        email 'zzf_soft@163.com'
-                        // #CONFIG# // your email
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ZRecyclerView'
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
+    publishedGroupId = 'org.zhzephi'
+    libraryName = 'zrecyclerlib'
+    artifact = 'zrecyclerlib'
 
-task javadoc(type: Javadoc) {
-    options.encoding = "UTF-8"
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
+    libraryDescription = 'A List widget of RecyclerView on Android'
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
+    siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
+    gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
 
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
+    libraryVersion = '2.1.0'
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "ZRecyclerView"
-        // #CONFIG# project name in jcenter
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
-        publish = true
-        // #Version info
-        version {
-            name = '1.1.1.Final'
-            vcsTag = '1.1.1'
-            gpg {
-                sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
-            }
-            mavenCentralSync {
-                sync = true
-                //Optional (true by default). Determines whether to sync the version to Maven Central.
-                user = properties.getProperty("bintray.oss.user") //OSS user token
-                password = properties.getProperty("bintray.oss.password") //OSS user password
-                close = '1' //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
-            }
-            //https://github.com/danielemaddaluno/gradle-jcenter-publish
-        }
-    }
+    developerId = 'zhzephi'
+    developerName = 'Zongfi.Zhao'
+    developerEmail = 'zzf_soft@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
 
 dependencies {
@@ -124,3 +49,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'jp.wasabeef:recyclerview-animators:1.2.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
