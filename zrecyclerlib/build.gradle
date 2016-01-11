@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 20160105
-        versionName '2.1.0'
+        versionCode 20160111
+        versionName '1.0.1'
     }
     buildTypes {
         release {
@@ -20,18 +20,18 @@ android {
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'ZRecyclerView'
+    bintrayName = 'ZRecyclerLib'
 
-    publishedGroupId = 'org.zhzephi'
+    publishedGroupId = 'tk.zhzephi'
     libraryName = 'zrecyclerlib'
     artifact = 'zrecyclerlib'
 
-    libraryDescription = 'A List widget of RecyclerView on Android'
+    libraryDescription = 'Use RecyclerView components, SwipeRefreshLayout component custom paging list of effects framework. For ease of use, the complex processing paging List concentrated in library, the user only needs to introduce inheritance you can easily complete list of drop-down refresh, load more effect'
 
     siteUrl = 'https://github.com/zhzephi/ZRecyclerView'
     gitUrl = 'https://github.com/zhzephi/ZRecyclerView.git'
 
-    libraryVersion = '2.1.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'zhzephi'
     developerName = 'Zongfi.Zhao'
